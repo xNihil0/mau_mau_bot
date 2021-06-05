@@ -41,7 +41,7 @@ from shared_vars import gm, updater, dispatcher
 from simple_commands import help_handler
 from start_bot import start_bot
 from utils import display_name
-from utils import send_async, answer_async, error, TIMEOUT, user_is_creator_or_admin, user_is_creator, game_is_running
+from utils import send_async, send_voice_async, answer_async, error, TIMEOUT, user_is_creator_or_admin, user_is_creator, game_is_running
 
 
 logging.basicConfig(
@@ -92,6 +92,7 @@ def new_game(bot, update):
         send_async(bot, chat_id,
                    text=_("Created a new game! Join the game with /join "
                           "and start the game with /start"))
+        send_voice_async(bot, chat_id, voice='AwACAgQAAx0CWNVJPwACkyZgu5g2zNxV0p5-PmCeSF-4LREIyQACxAIAArlszFGathjkaS7YNh4E')
 
 
 @user_locale
@@ -167,6 +168,9 @@ def join_game(bot, update):
         send_async(bot, chat.id,
                    text=_("Joined the game"),
                    reply_to_message_id=update.message.message_id)
+        send_voice_async(bot, chat.id,
+                         voice='AwACAgQAAx0CWNVJPwACkz1gu5nNlAQhtoMXjTQ8lEG7MxephQACvwIAAiv1zFG09lRiLLGTOB4E',
+                         reply_to_message_id=update.message.message_id)
 
 
 @user_locale

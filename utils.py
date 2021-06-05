@@ -75,7 +75,7 @@ def display_color_group(color, game):
     if color == "y":
         return __("{emoji} Yellow", game.translate).format(
             emoji='💛')
-  
+
 
 def error(bot, update, error):
     """Simple error handler"""
@@ -90,6 +90,18 @@ def send_async(bot, *args, **kwargs):
 
     try:
         bot.sendMessage(*args, **kwargs)
+    except Exception as e:
+        error(None, None, e)
+
+
+@run_async
+def send_voice_async(bot, *args, **kwargs):
+    """Send a message asynchronously"""
+    if 'timeout' not in kwargs:
+        kwargs['timeout'] = TIMEOUT
+
+    try:
+        bot.sendVoice(*args, **kwargs)
     except Exception as e:
         error(None, None, e)
 
